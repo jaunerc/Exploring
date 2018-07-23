@@ -1,7 +1,9 @@
 package ch.travbit.exploring.view;
 
 import ch.travbit.exploring.system.RenderSystem;
+import ch.travbit.exploring.tilemap.MapFactory;
 import ch.travbit.exploring.tilemap.OMapFactory;
+import ch.travbit.exploring.tilemap.TileMapFacade;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -19,12 +21,8 @@ public class GameScreen implements Screen {
     }
 
     private void test() {
-        /**Texture texture = new Texture("assets/tiles/grass.png");
-        Entity badlogic = engine.createEntity();
-        badlogic.add(new PositionComponent(100,100));
-        badlogic.add(new VisualComponent(new TextureRegion(texture)));
-        engine.addEntity(badlogic);*/
-        OMapFactory.createMapInEngine(engine, 10, 10);
+        MapFactory factory = TileMapFacade.createSimpleMapFactory();
+        factory.generateMap(engine, 10, 10);
     }
 
     @Override
