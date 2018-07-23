@@ -2,13 +2,21 @@ package ch.travbit.exploring.tilemap;
 
 import com.badlogic.ashley.core.PooledEngine;
 
-public class MapFactory {
+/**
+ * This interface provides methods to create maps.
+ */
+public interface MapFactory {
 
-    public static void createMapInEngine(PooledEngine engine, int mapWidth, int mapHeight) {
-        for (int i = 0; i < mapWidth; i++) {
-            for (int j = 0; j < mapHeight; j++) {
-                TileFactory.addSimpleTile(engine, i, j);
-            }
-        }
-    }
+    /**
+     * Initializes the factory.
+     */
+    void init();
+
+    /**
+     * Generates a new map.
+     * @param engine pooled ashley engine.
+     * @param mapWidth the number of tiles on the x-axis.
+     * @param mapHeight the number of tiles on the y-axis.
+     */
+    void generateMap(PooledEngine engine, int mapWidth, int mapHeight);
 }

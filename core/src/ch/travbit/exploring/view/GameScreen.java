@@ -1,17 +1,12 @@
 package ch.travbit.exploring.view;
 
-import ch.travbit.exploring.component.PositionComponent;
-import ch.travbit.exploring.component.VisualComponent;
 import ch.travbit.exploring.system.RenderSystem;
-import ch.travbit.exploring.tilemap.MapFactory;
-import com.badlogic.ashley.core.Entity;
+import ch.travbit.exploring.tilemap.OMapFactory;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class GameScreen implements Screen {
 
@@ -29,7 +24,7 @@ public class GameScreen implements Screen {
         badlogic.add(new PositionComponent(100,100));
         badlogic.add(new VisualComponent(new TextureRegion(texture)));
         engine.addEntity(badlogic);*/
-        MapFactory.createMapInEngine(engine, 100, 100);
+        OMapFactory.createMapInEngine(engine, 10, 10);
     }
 
     @Override
