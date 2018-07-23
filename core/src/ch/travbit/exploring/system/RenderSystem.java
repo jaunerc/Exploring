@@ -34,10 +34,10 @@ public class RenderSystem extends EntitySystem {
 
         batch.begin();
         batch.setProjectionMatrix(camera.combined);
-        batch.setColor(0.486f, 0.988f, 0.000f,1f);
         entities.forEach(entity -> {
             PositionComponent position = pm.get(entity);
             VisualComponent visual = vm.get(entity);
+            batch.setColor(visual.getColor());
             batch.draw(visual.getTextureRegion(), position.getVector().x, position.getVector().y);
         });
 
