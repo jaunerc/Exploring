@@ -2,7 +2,6 @@ package ch.travbit.exploring.view;
 
 import ch.travbit.exploring.system.RenderSystem;
 import ch.travbit.exploring.tilemap.MapFactory;
-import ch.travbit.exploring.tilemap.OMapFactory;
 import ch.travbit.exploring.tilemap.TileMapFacade;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
