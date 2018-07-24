@@ -2,6 +2,8 @@ package ch.travbit.exploring.tilemap;
 
 import ch.travbit.exploring.tilemap.tiles.GrassTileFactory;
 import ch.travbit.exploring.tilemap.tiles.TileFactory;
+import ch.travbit.exploring.util.AssetLoader;
+import ch.travbit.exploring.util.TileAsset;
 import com.badlogic.ashley.core.PooledEngine;
 
 public class SimpleMapFactory implements MapFactory {
@@ -10,8 +12,8 @@ public class SimpleMapFactory implements MapFactory {
 
     private TileFactory grassTileFactory;
 
-    public SimpleMapFactory() {
-        grassTileFactory = new GrassTileFactory(TILE_WIDTH_PIXELS, TILE_HEIGHT_PIXELS);
+    public SimpleMapFactory(AssetLoader assetLoader) {
+        grassTileFactory = new GrassTileFactory(TILE_WIDTH_PIXELS, TILE_HEIGHT_PIXELS, assetLoader.getTile(TileAsset.TILE_GRASS));
     }
 
     @Override

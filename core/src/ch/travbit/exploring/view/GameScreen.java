@@ -3,6 +3,7 @@ package ch.travbit.exploring.view;
 import ch.travbit.exploring.system.RenderSystem;
 import ch.travbit.exploring.tilemap.MapFactory;
 import ch.travbit.exploring.tilemap.TileMapFacade;
+import ch.travbit.exploring.util.AssetLoader;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -12,15 +13,17 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 public class GameScreen implements Screen {
 
     private PooledEngine engine;
+    private AssetLoader assetLoader;
 
-    public GameScreen(OrthographicCamera camera) {
+    public GameScreen(OrthographicCamera camera, AssetLoader assetLoader) {
         engine = new PooledEngine();
         engine.addSystem(new RenderSystem(camera));
+        this.assetLoader = assetLoader;
         test();
     }
 
     private void test() {
-        MapFactory factory = TileMapFacade.createSimpleMapFactory();
+        MapFactory factory = TileMapFacade.createSimpleMapFactory(assetLoader);
         factory.generateMap(engine, 10, 10);
     }
 
