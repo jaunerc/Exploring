@@ -7,7 +7,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class RenderSystem extends EntitySystem {
+public final class RenderSystem extends EntitySystem {
 
     private ImmutableArray<Entity> entities;
 

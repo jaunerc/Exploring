@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
  * This class represents a loader for external resources. It is responsible for loading
  * all assets into memory.
  */
-public class AssetLoader {
+public final class AssetLoader {
 
     private AssetManager assetManager;
 

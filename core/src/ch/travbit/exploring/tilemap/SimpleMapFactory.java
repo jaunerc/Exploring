@@ -6,7 +6,7 @@ import ch.travbit.exploring.util.AssetLoader;
 import ch.travbit.exploring.util.TileAsset;
 import com.badlogic.ashley.core.PooledEngine;
 
-public class SimpleMapFactory implements MapFactory {
+public final class SimpleMapFactory implements MapFactory {
     private final static int TILE_WIDTH_PIXELS = 32;
     private final static int TILE_HEIGHT_PIXELS = 32;
 
