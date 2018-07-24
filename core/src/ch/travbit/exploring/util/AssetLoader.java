@@ -24,6 +24,10 @@ public final class AssetLoader {
         }
     }
 
+    public void preparePlayerLoading() {
+        assetManager.load(PlayerAsset.PSEUDO.getPath(), Texture.class);
+    }
+
     /**
      * Loads all prepared resources synchronously.
      */
@@ -33,5 +37,9 @@ public final class AssetLoader {
 
     public Texture getTile(TileAsset tileAsset) {
         return assetManager.get(tileAsset.getPath(), Texture.class);
+    }
+
+    public Texture getPlayer(PlayerAsset playerAsset) {
+        return assetManager.get(playerAsset.getPath(), Texture.class);
     }
 }

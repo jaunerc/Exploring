@@ -14,6 +14,7 @@ public class ExploringGame extends Game {
 		camera.update();
         AssetLoader assetLoader = new AssetLoader();
         assetLoader.prepareTileLoading();
+        assetLoader.preparePlayerLoading();
         assetLoader.loadAllResourcesBlocking();
 		setScreen(new GameScreen(camera, assetLoader));
 	}
