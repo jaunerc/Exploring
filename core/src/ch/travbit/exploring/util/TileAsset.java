@@ -4,7 +4,7 @@ package ch.travbit.exploring.util;
  * Represents the tile textures in the asset directory.
  */
 public enum TileAsset {
-    TILE_GRASS("assets/tiles/grass.png");
+    TILE_GRASS("tiles/grass.png");
 
     private String path;
 
