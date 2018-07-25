@@ -9,20 +9,12 @@ import com.badlogic.gdx.utils.Pool;
  * This component represents a graphical object in the world.
  */
 public class VisualComponent implements Component, Pool.Poolable {
-    private TextureRegion textureRegion;
-    private Color color;
+    public TextureRegion textureRegion;
+    public Color color;
 
     public VisualComponent(TextureRegion textureRegion, Color color) {
         this.textureRegion = textureRegion;
         this.color = color;
-    }
-
-    public TextureRegion getTextureRegion() {
-        return textureRegion;
-    }
-
-    public Color getColor() {
-        return color;
     }
 
     @Override

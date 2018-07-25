@@ -33,7 +33,7 @@ public class MapSystem extends IteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         PositionComponent position = pm.get(entity);
-        if (position.getVector().x > 50) {
+        if (position.vector.x > 50) {
             PooledEngine engine = (PooledEngine) getEngine();
             mapFactory.generateMap(engine, 20, 10);
         }

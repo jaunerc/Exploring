@@ -3,6 +3,9 @@ package ch.travbit.exploring.util.noise;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * Tests for {@link ch.travbit.exploring.util.noise.SimplexNoiseCalculator}
+ */
 public class SimplexNoiseCalculatorTest {
 
     @Test
@@ -11,6 +14,6 @@ public class SimplexNoiseCalculatorTest {
         int y = 1;
         SimplexNoise sn = new SimplexNoise(1234);
         double noise = SimplexNoiseCalculator.calcNoise(sn, x, y, 1, 1.0, 0.01);
-        Assert.assertEquals(0.087360, noise, 0.0000001);
+        Assert.assertEquals(0.087360, noise, 0.000001);
     }
 }

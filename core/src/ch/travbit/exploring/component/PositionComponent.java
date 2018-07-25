@@ -8,14 +8,10 @@ import com.badlogic.gdx.utils.Pool;
  * This component represents a position in the world.
  */
 public class PositionComponent implements Component, Pool.Poolable {
-    private Vector2 vector;
+    public Vector2 vector;
 
     public PositionComponent(float x, float y) {
         vector = new Vector2(x, y);
-    }
-
-    public Vector2 getVector() {
-        return vector;
     }
 
     @Override

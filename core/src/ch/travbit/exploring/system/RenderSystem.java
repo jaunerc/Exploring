@@ -37,8 +37,8 @@ public final class RenderSystem extends EntitySystem {
         entities.forEach(entity -> {
             PositionComponent position = pm.get(entity);
             VisualComponent visual = vm.get(entity);
-            batch.setColor(visual.getColor());
-            batch.draw(visual.getTextureRegion(), position.getVector().x, position.getVector().y);
+            batch.setColor(visual.color);
+            batch.draw(visual.textureRegion, position.vector.x, position.vector.y);
         });
 
         batch.end();
