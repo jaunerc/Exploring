@@ -21,6 +21,7 @@ public class ExploringWorld implements World {
     private ExploringGame game;
     private MapFactory mapFactory;
     private PooledEngine engine;
+    private int chunkSize;
 
     public ExploringWorld(ExploringGame game, PooledEngine engine) {
         this.game = game;
@@ -33,17 +34,25 @@ public class ExploringWorld implements World {
         Entity worldEntity = engine.createEntity();
         worldEntity.add(new WorldComponent(11));
         engine.addEntity(worldEntity);
+
+        chunkSize = 10;
+        mapFactory.init(this);
     }
 
     @Override
     public void createWorld() {
-        mapFactory.generateMap(engine, 10, 10);
+        mapFactory.createTiles(engine, 10, 0);
         createPlayer();
     }
 
     @Override
     public void expandWorld() {
 
+    }
+
+    @Override
+    public int getChunkSize() {
+        return chunkSize;
     }
 
     private void createPlayer() {

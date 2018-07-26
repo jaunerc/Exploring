@@ -10,4 +10,6 @@ public interface World {
     void createWorld();
 
     void expandWorld();
+
+    int getChunkSize();
 }

@@ -1,5 +1,6 @@
 package ch.travbit.exploring.world.tilemap;
 
+import ch.travbit.exploring.world.World;
 import com.badlogic.ashley.core.PooledEngine;
 
 /**
@@ -10,13 +11,13 @@ public interface MapFactory {
     /**
      * Initializes the factory.
      */
-    void init();
+    void init(World world);
 
     /**
-     * Generates a new map.
+     * Creates tiles a new map.
      * @param engine pooled ashley engine.
-     * @param mapWidth the number of tiles on the x-axis.
-     * @param mapHeight the number of tiles on the y-axis.
+     * @param startX the number of tiles on the x-axis.
+     * @param startY the number of tiles on the y-axis.
      */
-    void generateMap(PooledEngine engine, int mapWidth, int mapHeight);
+    void createTiles(PooledEngine engine, int startX, int startY);
 }
