@@ -17,9 +17,9 @@ public final class RenderSystem extends EntitySystem {
     private ComponentMapper<PositionComponent> pm = ComponentMapper.getFor(PositionComponent.class);
     private ComponentMapper<VisualComponent> vm = ComponentMapper.getFor(VisualComponent.class);
 
-    public RenderSystem(OrthographicCamera camera) {
+    public RenderSystem(OrthographicCamera camera, SpriteBatch batch) {
         this.camera = camera;
-        batch = new SpriteBatch();
+        this.batch = batch;
     }
 
     @Override

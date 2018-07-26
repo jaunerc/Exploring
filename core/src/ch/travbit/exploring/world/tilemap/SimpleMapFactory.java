@@ -1,7 +1,7 @@
-package ch.travbit.exploring.tilemap;
+package ch.travbit.exploring.world.tilemap;
 
-import ch.travbit.exploring.tilemap.tiles.GrassTileFactory;
-import ch.travbit.exploring.tilemap.tiles.TileFactory;
+import ch.travbit.exploring.world.tilemap.tiles.GrassTileFactory;
+import ch.travbit.exploring.world.tilemap.tiles.TileFactory;
 import ch.travbit.exploring.util.AssetLoader;
 import ch.travbit.exploring.util.TileAsset;
 import com.badlogic.ashley.core.PooledEngine;

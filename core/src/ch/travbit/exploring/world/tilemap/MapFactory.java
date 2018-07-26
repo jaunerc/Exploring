@@ -1,4 +1,4 @@
-package ch.travbit.exploring.tilemap;
+package ch.travbit.exploring.world.tilemap;
 
 import com.badlogic.ashley.core.PooledEngine;
 

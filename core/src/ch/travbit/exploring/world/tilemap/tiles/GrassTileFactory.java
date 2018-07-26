@@ -1,4 +1,4 @@
-package ch.travbit.exploring.tilemap.tiles;
+package ch.travbit.exploring.world.tilemap.tiles;
 
 import ch.travbit.exploring.component.PositionComponent;
 import ch.travbit.exploring.component.VisualComponent;

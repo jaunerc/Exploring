@@ -1,45 +1,43 @@
 package ch.travbit.exploring.view;
 
-import ch.travbit.exploring.component.PlayerComponent;
-import ch.travbit.exploring.component.PositionComponent;
-import ch.travbit.exploring.component.VisualComponent;
+import ch.travbit.exploring.ExploringGame;
 import ch.travbit.exploring.system.MapSystem;
 import ch.travbit.exploring.system.PlayerSystem;
 import ch.travbit.exploring.system.RenderSystem;
-import ch.travbit.exploring.tilemap.MapFactory;
-import ch.travbit.exploring.tilemap.TileMapFacade;
-import ch.travbit.exploring.util.AssetLoader;
-import ch.travbit.exploring.util.PlayerAsset;
-import com.badlogic.ashley.core.Entity;
+import ch.travbit.exploring.world.World;
+import ch.travbit.exploring.world.WorldFacade;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+/**
+ * This class represents the main game screen.
+ */
 public class GameScreen implements Screen {
 
     private PooledEngine engine;
-    private AssetLoader assetLoader;
+    private OrthographicCamera camera;
+    private ExploringGame exploringGame;
 
-    public GameScreen(OrthographicCamera camera, AssetLoader assetLoader) {
-        this.assetLoader = assetLoader;
+    public GameScreen(ExploringGame exploringGame) {
+        this.exploringGame = exploringGame;
+        camera = new OrthographicCamera(640, 480);
         engine = new PooledEngine();
-        engine.addSystem(new RenderSystem(camera));
-        engine.addSystem(new MapSystem(assetLoader));
-        engine.addSystem(new PlayerSystem());
-        tmpCreatePlayer();
+        init();
     }
 
-    private void tmpCreatePlayer() {
-        Entity player = engine.createEntity();
-        player.add(new PositionComponent(0,0));
-        player.add(new VisualComponent(new TextureRegion(assetLoader.getPlayer(PlayerAsset.PSEUDO)), Color.CYAN));
-        player.add(new PlayerComponent("Dave"));
-        engine.addEntity(player);
+    private void init() {
+        camera.position.set(320, 240, 0);
+
+        World world = WorldFacade.createExploringWorld(exploringGame, engine);
+        world.init();
+        world.createWorld();
+
+        engine.addSystem(new RenderSystem(camera, exploringGame.getSpriteBatch()));
+        engine.addSystem(new MapSystem(world));
+        engine.addSystem(new PlayerSystem());
     }
 
     @Override
