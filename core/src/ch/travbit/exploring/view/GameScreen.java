@@ -11,6 +11,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
 
 /**
  * This class represents the main game screen.
@@ -33,7 +34,7 @@ public class GameScreen implements Screen {
 
         World world = WorldFacade.createExploringWorld(exploringGame, engine);
         world.init();
-        world.createWorld();
+        world.createWorldAroundPlayer(new Vector2(0,0));
 
         engine.addSystem(new RenderSystem(camera, exploringGame.getSpriteBatch()));
         engine.addSystem(new MapSystem(world));

@@ -23,7 +23,7 @@ public class PlayerSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         PositionComponent position = pm.get(entity);
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            position.vector.x += deltaTime * 10;
+            position.vector.x += deltaTime * 25;
         }
     }
 }
