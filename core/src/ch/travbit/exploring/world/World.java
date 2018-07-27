@@ -9,9 +9,7 @@ public interface World {
 
     void init();
 
-    void createWorldAroundPlayer(Vector2 playerPosition);
-
-    void expandWorld(Vector2 playerPosition);
+    void expandWorld(int chunkX, int chunkY);
 
     int getChunkSize();
 

@@ -44,4 +44,9 @@ public final class ChunkPos {
 
         return Objects.hash(getX(), getY());
     }
+
+    @Override
+    public String toString() {
+        return "x="+x+",y="+y;
+    }
 }

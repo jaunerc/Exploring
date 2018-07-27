@@ -12,7 +12,7 @@ public class WorldFacade {
     }
 
     public static World createExploringWorld(ExploringGame game, PooledEngine engine) {
-        int chunkSize = 16;
+        int chunkSize = 8;
         int pixelsPerMeter = 32;
         return new ExploringWorld(game, engine, chunkSize, pixelsPerMeter);
     }

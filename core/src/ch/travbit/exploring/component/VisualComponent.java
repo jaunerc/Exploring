@@ -11,15 +11,18 @@ import com.badlogic.gdx.utils.Pool;
 public class VisualComponent implements Component, Pool.Poolable {
     public TextureRegion textureRegion;
     public Color color;
+    public int renderLevel;
 
-    public VisualComponent(TextureRegion textureRegion, Color color) {
+    public VisualComponent(TextureRegion textureRegion, Color color, int renderLevel) {
         this.textureRegion = textureRegion;
         this.color = color;
+        this.renderLevel = renderLevel;
     }
 
     @Override
     public void reset() {
         textureRegion = null;
         color = null;
+        renderLevel = 0;
     }
 }

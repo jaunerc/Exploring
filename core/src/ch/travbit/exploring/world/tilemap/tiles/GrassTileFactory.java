@@ -2,6 +2,7 @@ package ch.travbit.exploring.world.tilemap.tiles;
 
 import ch.travbit.exploring.component.PositionComponent;
 import ch.travbit.exploring.component.VisualComponent;
+import ch.travbit.exploring.util.rendering.RenderLevel;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.graphics.Color;
@@ -25,7 +26,7 @@ public class GrassTileFactory implements TileFactory {
     @Override
     public void addTileToEngine(PooledEngine engine, int tileX, int tileY) {
         PositionComponent pos = new PositionComponent(tileX * tileWidth, tileY * tileHeight);
-        VisualComponent visual = new VisualComponent(new TextureRegion(texture), color);
+        VisualComponent visual = new VisualComponent(new TextureRegion(texture), color, RenderLevel.TILE.getZ());
         Entity tile = engine.createEntity();
         tile.add(pos);
         tile.add(visual);

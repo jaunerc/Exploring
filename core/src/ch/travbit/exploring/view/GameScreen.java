@@ -1,16 +1,24 @@
 package ch.travbit.exploring.view;
 
 import ch.travbit.exploring.ExploringGame;
+import ch.travbit.exploring.component.PlayerComponent;
+import ch.travbit.exploring.component.PositionComponent;
+import ch.travbit.exploring.component.VisualComponent;
 import ch.travbit.exploring.system.MapSystem;
 import ch.travbit.exploring.system.PlayerSystem;
 import ch.travbit.exploring.system.RenderSystem;
+import ch.travbit.exploring.util.PlayerAsset;
+import ch.travbit.exploring.util.rendering.RenderLevel;
 import ch.travbit.exploring.world.World;
 import ch.travbit.exploring.world.WorldFacade;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -32,13 +40,22 @@ public class GameScreen implements Screen {
     private void init() {
         camera.position.set(320, 240, 0);
 
+        Vector2 playerStartPosition = new Vector2(50, 100);
+        createPlayer(playerStartPosition);
+
         World world = WorldFacade.createExploringWorld(exploringGame, engine);
         world.init();
-        world.createWorldAroundPlayer(new Vector2(0,0));
 
         engine.addSystem(new RenderSystem(camera, exploringGame.getSpriteBatch()));
-        engine.addSystem(new MapSystem(world));
+        engine.addSystem(new MapSystem(world, playerStartPosition));
         engine.addSystem(new PlayerSystem());
+    }
+    private void createPlayer(Vector2 startPosition) {
+        Entity player = engine.createEntity();
+        player.add(new PositionComponent(startPosition.x, startPosition.y));
+        player.add(new VisualComponent(new TextureRegion(exploringGame.getAssetLoader().getPlayer(PlayerAsset.PSEUDO)), Color.CYAN, RenderLevel.PLAYER.getZ()));
+        player.add(new PlayerComponent("Dave"));
+        engine.addEntity(player);
     }
 
     @Override
