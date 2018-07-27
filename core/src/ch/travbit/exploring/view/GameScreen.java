@@ -48,7 +48,7 @@ public class GameScreen implements Screen {
 
         engine.addSystem(new RenderSystem(camera, exploringGame.getSpriteBatch()));
         engine.addSystem(new MapSystem(world, playerStartPosition));
-        engine.addSystem(new PlayerSystem());
+        engine.addSystem(new PlayerSystem(camera));
     }
     private void createPlayer(Vector2 startPosition) {
         Entity player = engine.createEntity();
