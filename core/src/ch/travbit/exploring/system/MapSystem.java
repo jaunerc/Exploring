@@ -50,12 +50,12 @@ public final class MapSystem extends IteratingSystem {
     }
 
     private void createMapAroundPlayer() {
-        /**for (int i = 0 ; i < neighborX.length; i++) {
+        for (int i = 0 ; i < neighborX.length; i++) {
             ChunkPos pos = new ChunkPos(currentChunk.getX() + neighborX[i],
                     currentChunk.getY() + neighborY[i]);
             createChunkIfNotExist(pos);
-        }*/
-        createChunkIfNotExist(currentChunk);
+        }
+        //createChunkIfNotExist(currentChunk);
     }
 
     private boolean isInsideChunk(Vector2 pos) {
