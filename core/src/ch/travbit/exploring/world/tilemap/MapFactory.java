@@ -16,8 +16,8 @@ public interface MapFactory {
     /**
      * Creates tiles a new map.
      * @param engine pooled ashley engine.
-     * @param startX the number of tiles on the x-axis.
-     * @param startY the number of tiles on the y-axis.
+     * @param startCoordinateX the first coordinate on the x-axis.
+     * @param startCoordinateY the first coordinate on the y-axis.
      */
-    void createTiles(PooledEngine engine, int startX, int startY);
+    void createTiles(PooledEngine engine, float startCoordinateX, float startCoordinateY);
 }

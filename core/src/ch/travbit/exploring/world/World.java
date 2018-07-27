@@ -9,7 +9,7 @@ public interface World {
 
     void init();
 
-    void expandWorld(int chunkX, int chunkY);
+    void expandWorld(float startCoordinateX, float startCoordinateY);
 
     int getChunkSize();
 

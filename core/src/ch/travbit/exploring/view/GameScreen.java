@@ -8,7 +8,7 @@ import ch.travbit.exploring.system.MapSystem;
 import ch.travbit.exploring.system.PlayerSystem;
 import ch.travbit.exploring.system.RenderSystem;
 import ch.travbit.exploring.util.PlayerAsset;
-import ch.travbit.exploring.util.rendering.RenderLevel;
+import ch.travbit.exploring.util.rendering.RenderLayer;
 import ch.travbit.exploring.world.World;
 import ch.travbit.exploring.world.WorldFacade;
 import com.badlogic.ashley.core.Entity;
@@ -40,7 +40,7 @@ public class GameScreen implements Screen {
     private void init() {
         camera.position.set(320, 240, 0);
 
-        Vector2 playerStartPosition = new Vector2(50, 100);
+        Vector2 playerStartPosition = new Vector2(320, 240);
         createPlayer(playerStartPosition);
 
         World world = WorldFacade.createExploringWorld(exploringGame, engine);
@@ -53,7 +53,7 @@ public class GameScreen implements Screen {
     private void createPlayer(Vector2 startPosition) {
         Entity player = engine.createEntity();
         player.add(new PositionComponent(startPosition.x, startPosition.y));
-        player.add(new VisualComponent(new TextureRegion(exploringGame.getAssetLoader().getPlayer(PlayerAsset.PSEUDO)), Color.CYAN, RenderLevel.PLAYER.getZ()));
+        player.add(new VisualComponent(new TextureRegion(exploringGame.getAssetLoader().getPlayer(PlayerAsset.PSEUDO)), Color.CYAN, RenderLayer.PLAYER.getIndex()));
         player.add(new PlayerComponent("Dave"));
         engine.addEntity(player);
     }

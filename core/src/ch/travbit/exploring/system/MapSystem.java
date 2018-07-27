@@ -12,7 +12,10 @@ import com.badlogic.gdx.math.Vector3;
 
 import java.util.HashSet;
 
-public class MapSystem extends IteratingSystem {
+public final class MapSystem extends IteratingSystem {
+
+    private final static int[] neighborX = new int[] {-1, 0, 1, -1, 0, 1, -1, 0, 1};
+    private final static int[] neighborY = new int[] {1, 1, 1, 0, 0, 0, -1, -1, -1};
 
     private ComponentMapper<PositionComponent> pm;
     private World world;
@@ -47,6 +50,11 @@ public class MapSystem extends IteratingSystem {
     }
 
     private void createMapAroundPlayer() {
+        /**for (int i = 0 ; i < neighborX.length; i++) {
+            ChunkPos pos = new ChunkPos(currentChunk.getX() + neighborX[i],
+                    currentChunk.getY() + neighborY[i]);
+            createChunkIfNotExist(pos);
+        }*/
         createChunkIfNotExist(currentChunk);
     }
 
@@ -59,7 +67,8 @@ public class MapSystem extends IteratingSystem {
 
     private void createChunkIfNotExist(ChunkPos chunkPos) {
         if (! generatedChunks.contains(chunkPos)) {
-            world.expandWorld(chunkPos.getX(), chunkPos.getY());
+            Vector2 startCoordinates = worldCalculator.calcWorldCoordinateByChunkCorner(chunkPos.getX(), chunkPos.getY());
+            world.expandWorld(startCoordinates.x, startCoordinates.y);
             generatedChunks.add(chunkPos);
         }
     }
@@ -69,8 +78,6 @@ public class MapSystem extends IteratingSystem {
         PositionComponent position = pm.get(entity);
         if (! isInsideChunk(position.vector)) {
             ChunkPos tmpPos = new ChunkPos(0,0);
-            int[] neighborX = new int[] {-1, 0, 1, -1, 0, 1, -1, 0, 1};
-            int[] neighborY = new int[] {1, 1, 1, 0, 0, 0, -1, -1, -1};
 
             for (int i = 0; i < neighborX.length; i++) {
                 tmpPos.setX(currentChunk.getX() + neighborX[i]);

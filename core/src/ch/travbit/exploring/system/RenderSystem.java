@@ -4,13 +4,15 @@ import ch.travbit.exploring.component.PositionComponent;
 import ch.travbit.exploring.component.VisualComponent;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.Comparator;
 
+/**
+ * This class represents a rendering system to draw textures.
+ */
 public final class RenderSystem extends IteratingSystem {
 
     private SpriteBatch batch;
@@ -47,6 +49,7 @@ public final class RenderSystem extends IteratingSystem {
         renderQueue.sort(zComparator);
 
         batch.begin();
+
         batch.setProjectionMatrix(camera.combined);
         renderQueue.forEach(entity -> {
             PositionComponent position = pm.get(entity);

@@ -8,26 +8,30 @@ import ch.travbit.exploring.util.TileAsset;
 import com.badlogic.ashley.core.PooledEngine;
 
 public final class SimpleMapFactory implements MapFactory {
-    private final static int TILE_WIDTH_PIXELS = 32;
-    private final static int TILE_HEIGHT_PIXELS = 32;
 
     private TileFactory grassTileFactory;
     private int chunkSize;
+    private int pixelsPerMeter;
 
     public SimpleMapFactory(AssetLoader assetLoader) {
-        grassTileFactory = new GrassTileFactory(TILE_WIDTH_PIXELS, TILE_HEIGHT_PIXELS, assetLoader.getTile(TileAsset.TILE_GRASS));
+        grassTileFactory = new GrassTileFactory(assetLoader.getTile(TileAsset.TILE_GRASS));
     }
 
     @Override
     public void init(World world) {
         chunkSize = world.getChunkSize();
+        pixelsPerMeter = world.getPixelsPerMeter();
     }
 
     @Override
-    public void createTiles(PooledEngine engine, int startX, int startY) {
-        for (int i = startX; i < startX + chunkSize; i++) {
-            for (int j = startY; j < startY + chunkSize; j++) {
-                grassTileFactory.addTileToEngine(engine, i, j);
+    public void createTiles(PooledEngine engine, float startCoordinateX, float startCoordinateY) {
+        int coordX;
+        int coordY;
+        for (int i = 0; i < chunkSize; i++) {
+            for (int j = 0; j < chunkSize; j++) {
+                coordX = (int) (startCoordinateX + i * pixelsPerMeter);
+                coordY = (int) (startCoordinateY + j * pixelsPerMeter);
+                grassTileFactory.addTileToEngine(engine, coordX, coordY);
             }
         }
     }
