@@ -1,7 +1,6 @@
 package ch.travbit.exploring.world;
 
 import ch.travbit.exploring.ExploringGame;
-import ch.travbit.exploring.component.WorldComponent;
 import ch.travbit.exploring.world.tilemap.MapFactory;
 import ch.travbit.exploring.world.tilemap.TileMapFacade;
 import com.badlogic.ashley.core.Entity;
@@ -29,7 +28,6 @@ public class ExploringWorld implements World {
     @Override
     public void init() {
         Entity worldEntity = engine.createEntity();
-        worldEntity.add(new WorldComponent(11));
         engine.addEntity(worldEntity);
 
         mapFactory.init(this);
