@@ -28,10 +28,20 @@ public class PlayerSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         PositionComponent position = pm.get(entity);
         Vector2 nextPos = new Vector2();
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            nextPos.x += deltaTime * 25;
+        float translation = deltaTime * 30; //ToDo velocity
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
+            nextPos.x += translation;
         }
-        position.vector.x += nextPos.x;
-        camera.position.x += nextPos.x;
+        if (Gdx.input.isKeyPressed(Input.Keys.DOWN) || Gdx.input.isKeyPressed(Input.Keys.S)) {
+            nextPos.y -= translation;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) || Gdx.input.isKeyPressed(Input.Keys.A)) {
+            nextPos.x -= translation;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP) || Gdx.input.isKeyPressed(Input.Keys.W)) {
+            nextPos.y += translation;
+        }
+        position.vector.add(nextPos);
+        camera.position.add(nextPos.x, nextPos.y, 0);
     }
 }
