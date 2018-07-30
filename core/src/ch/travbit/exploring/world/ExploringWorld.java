@@ -6,6 +6,8 @@ import ch.travbit.exploring.world.tilemap.TileMapFacade;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 
+import java.util.Random;
+
 /**
  * This class represents the concrete in game world.
  */
@@ -16,6 +18,8 @@ public class ExploringWorld implements World {
     private PooledEngine engine;
     private final int chunkSize;
     private final int pixelsPerMeter;
+
+    private int climateRegionSeed;
 
     public ExploringWorld(ExploringGame game, PooledEngine engine, int chunkSize, int pixelsPerMeter) {
         this.game = game;
@@ -31,6 +35,9 @@ public class ExploringWorld implements World {
         engine.addEntity(worldEntity);
 
         mapFactory.init(this);
+
+        Random random = new Random();
+        climateRegionSeed = random.nextInt();
     }
 
     @Override
