@@ -8,7 +8,6 @@ import ch.travbit.exploring.world.WorldCalculator;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 
 import java.util.HashSet;
 
@@ -55,7 +54,7 @@ public final class MapSystem extends IteratingSystem {
                     currentChunk.getY() + neighborY[i]);
             createChunkIfNotExist(pos);
         }
-        //createChunkIfNotExist(currentChunk);
+        System.out.println(currentChunk.getX() + ", " + currentChunk.getY());
     }
 
     private boolean isInsideChunk(Vector2 pos) {
@@ -77,6 +76,7 @@ public final class MapSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         PositionComponent position = pm.get(entity);
         if (! isInsideChunk(position.vector)) {
+            currentChunk = worldCalculator.calcChunkPosByWorldCoordinate(position.vector);
             ChunkPos tmpPos = new ChunkPos(0,0);
 
             for (int i = 0; i < neighborX.length; i++) {
@@ -84,6 +84,11 @@ public final class MapSystem extends IteratingSystem {
                 tmpPos.setY(currentChunk.getY() + neighborY[i]);
                 createChunkIfNotExist(tmpPos);
             }
+            currentChunkWorldCoordinateMin = worldCalculator.calcWorldCoordinateByChunkCorner(
+                    currentChunk.getX(), currentChunk.getY());
+            currentChunkWorldCoordinateMax = worldCalculator.calcWorldCoordinateByChunkCorner(
+                    currentChunk.getX() + 1, currentChunk.getY() + 1);
+            System.out.println(generatedChunks.size());
         }
     }
 }

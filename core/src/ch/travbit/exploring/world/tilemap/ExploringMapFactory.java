@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class ExploringMapFactory implements MapFactory {
 
-    private final static float SEALEVEL = 0.4f;
+    private final static float SEALEVEL = -0.6f;
 
     private int chunkSize;
     private int pixelsPerMeter;
