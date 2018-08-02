@@ -7,4 +7,6 @@ public interface ClimateZone {
     boolean temperatureIsInsideZone(float temperature);
 
     LifeZone getLifeZoneByHumidity(float humidity);
+
+    LifeZone getWaterLifeZone();
 }
