@@ -63,6 +63,11 @@ public class ClimateZoneTest {
         public LifeZone getLifeZoneByHumidity(float humidity) {
             return lifeZone.humidityIsInsideZone(humidity) ? lifeZone : null;
         }
+
+        @Override
+        public LifeZone getWaterLifeZone() {
+            return null;
+        }
     }
 
     private class LifeZoneDummy implements LifeZone {

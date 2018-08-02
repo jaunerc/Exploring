@@ -53,7 +53,7 @@ public class GameScreen implements Screen {
     private void createPlayer(Vector2 startPosition) {
         Entity player = engine.createEntity();
         player.add(new PositionComponent(startPosition.x, startPosition.y));
-        player.add(new VisualComponent(new TextureRegion(exploringGame.getAssetLoader().getPlayer(PlayerAsset.PSEUDO)), Color.CYAN, RenderLayer.PLAYER.getIndex()));
+        player.add(new VisualComponent(new TextureRegion(exploringGame.getAssetLoader().getPlayer(PlayerAsset.PSEUDO)), Color.RED, RenderLayer.PLAYER.getIndex()));
         player.add(new PlayerComponent("Dave"));
         engine.addEntity(player);
     }

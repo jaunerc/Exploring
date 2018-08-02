@@ -2,7 +2,9 @@ package ch.travbit.exploring;
 
 import ch.travbit.exploring.util.AssetLoader;
 import ch.travbit.exploring.view.GameScreen;
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -23,6 +25,7 @@ public class ExploringGame extends Game {
 
     @Override
 	public void create () {
+        Gdx.app.setLogLevel(Application.LOG_DEBUG);
         spriteBatch = new SpriteBatch();
 		OrthographicCamera camera = new OrthographicCamera(640, 480);
 		camera.position.set(320, 240, 0);
