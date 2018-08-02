@@ -13,4 +13,9 @@ public final class TileMapFacade {
         MapFactory mapFactory = new SimpleMapFactory(assetLoader);
         return mapFactory;
     }
+
+    public static MapFactory createExploringMapFactory(AssetLoader assetLoader) {
+        MapFactory mapFactory = new ExploringMapFactory(assetLoader);
+        return mapFactory;
+    }
 }

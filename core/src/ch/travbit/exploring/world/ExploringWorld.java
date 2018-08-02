@@ -26,7 +26,7 @@ public class ExploringWorld implements World {
         this.engine = engine;
         this.chunkSize = chunkSize;
         this.pixelsPerMeter = pixelsPerMeter;
-        mapFactory = TileMapFacade.createSimpleMapFactory(game.getAssetLoader());
+        mapFactory = TileMapFacade.createExploringMapFactory(game.getAssetLoader());
     }
 
     @Override
