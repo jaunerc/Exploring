@@ -1,7 +1,10 @@
-package ch.travbit.exploring.world.climate;
+package ch.travbit.exploring.world.climate.temperate;
 
 import ch.travbit.exploring.util.AssetLoader;
 import ch.travbit.exploring.util.TileAsset;
+import ch.travbit.exploring.world.climate.BaseClimateZone;
+import ch.travbit.exploring.world.climate.LifeZone;
+import ch.travbit.exploring.world.climate.water.WaterLifeZone;
 
 public class TemperateClimateZone extends BaseClimateZone {
 

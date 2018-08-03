@@ -1,9 +1,9 @@
-package ch.travbit.exploring.world.climate;
+package ch.travbit.exploring.world.climate.temperate;
 
-import ch.travbit.exploring.world.tilemap.tiles.GrassTileFactory;
+import ch.travbit.exploring.world.climate.BaseLifeZone;
 import com.badlogic.gdx.graphics.Texture;
 
-public class GrassLifeZone extends BaseLifeZone {
+public final class GrassLifeZone extends BaseLifeZone {
 
     public GrassLifeZone(Texture texture) {
         super(new GrassTileFactory(texture));
