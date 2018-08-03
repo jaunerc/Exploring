@@ -4,6 +4,7 @@ import ch.travbit.exploring.ExploringGame;
 import ch.travbit.exploring.component.PlayerComponent;
 import ch.travbit.exploring.component.PositionComponent;
 import ch.travbit.exploring.component.VisualComponent;
+import ch.travbit.exploring.system.MapCleanupSystem;
 import ch.travbit.exploring.system.MapSystem;
 import ch.travbit.exploring.system.PlayerSystem;
 import ch.travbit.exploring.system.RenderSystem;
@@ -32,7 +33,7 @@ public class GameScreen implements Screen {
 
     public GameScreen(ExploringGame exploringGame) {
         this.exploringGame = exploringGame;
-        camera = new OrthographicCamera(640, 480);
+        camera = new OrthographicCamera(320, 240);
         engine = new PooledEngine();
         init();
     }
@@ -49,11 +50,20 @@ public class GameScreen implements Screen {
         engine.addSystem(new RenderSystem(camera, exploringGame.getSpriteBatch()));
         engine.addSystem(new MapSystem(world, playerStartPosition));
         engine.addSystem(new PlayerSystem(camera));
+        engine.addSystem(new MapCleanupSystem(camera));
     }
     private void createPlayer(Vector2 startPosition) {
         Entity player = engine.createEntity();
-        player.add(new PositionComponent(startPosition.x, startPosition.y));
-        player.add(new VisualComponent(new TextureRegion(exploringGame.getAssetLoader().getPlayer(PlayerAsset.PSEUDO)), Color.RED, RenderLayer.PLAYER.getIndex()));
+        PositionComponent pos = engine.createComponent(PositionComponent.class);
+        pos.vector.x = startPosition.x;
+        pos.vector.y = startPosition.y;
+        VisualComponent visual = engine.createComponent(VisualComponent.class);
+        visual.textureRegion = new TextureRegion(exploringGame.getAssetLoader().getPlayer(PlayerAsset.PSEUDO));
+        visual.color = Color.RED;
+        visual.renderLevel = RenderLayer.PLAYER.getIndex();
+
+        player.add(pos);
+        player.add(visual);
         player.add(new PlayerComponent("Dave"));
         engine.addEntity(player);
     }

@@ -13,12 +13,6 @@ public class VisualComponent implements Component, Pool.Poolable {
     public Color color;
     public int renderLevel;
 
-    public VisualComponent(TextureRegion textureRegion, Color color, int renderLevel) {
-        this.textureRegion = textureRegion;
-        this.color = color;
-        this.renderLevel = renderLevel;
-    }
-
     @Override
     public void reset() {
         textureRegion = null;
