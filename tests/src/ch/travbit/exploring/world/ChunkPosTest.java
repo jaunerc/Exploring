@@ -1,10 +1,11 @@
 package ch.travbit.exploring.world;
 
+import ch.travbit.exploring.world.util.ChunkPos;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Test for {@link ch.travbit.exploring.world.ChunkPos}
+ * Test for {@link ChunkPos}
  */
 public class ChunkPosTest {
 

@@ -1,8 +1,8 @@
 package ch.travbit.exploring.world;
 
 import ch.travbit.exploring.ExploringGame;
-import ch.travbit.exploring.world.tilemap.MapFactory;
-import ch.travbit.exploring.world.tilemap.TileMapFacade;
+import ch.travbit.exploring.world.map.MapFactory;
+import ch.travbit.exploring.world.map.TileMapFacade;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 

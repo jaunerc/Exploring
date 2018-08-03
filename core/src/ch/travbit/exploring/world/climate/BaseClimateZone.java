@@ -2,6 +2,7 @@ package ch.travbit.exploring.world.climate;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class BaseClimateZone implements ClimateZone {
 
@@ -30,8 +31,8 @@ public abstract class BaseClimateZone implements ClimateZone {
     }
 
     @Override
-    public LifeZone getLifeZoneByHumidity(float humidity) {
-        return lifeZones.stream().filter(lifeZone -> lifeZone.humidityIsInsideZone(humidity)).findFirst().get();
+    public Optional<LifeZone> getLifeZoneByHumidity(float humidity) {
+        return lifeZones.stream().filter(lifeZone -> lifeZone.humidityIsInsideZone(humidity)).findFirst();
     }
 
     @Override

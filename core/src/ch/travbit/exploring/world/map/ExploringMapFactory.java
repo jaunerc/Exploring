@@ -1,4 +1,4 @@
-package ch.travbit.exploring.world.tilemap;
+package ch.travbit.exploring.world.map;
 
 import ch.travbit.exploring.util.AssetLoader;
 import ch.travbit.exploring.util.noise.SimplexNoise;
@@ -6,9 +6,10 @@ import ch.travbit.exploring.util.noise.SimplexNoiseCalculator;
 import ch.travbit.exploring.world.World;
 import ch.travbit.exploring.world.climate.ClimateZone;
 import ch.travbit.exploring.world.climate.LifeZone;
-import ch.travbit.exploring.world.climate.TemperateClimateZone;
+import ch.travbit.exploring.world.climate.temperate.TemperateClimateZone;
 import com.badlogic.ashley.core.PooledEngine;
 
+import java.util.Optional;
 import java.util.Random;
 
 public class ExploringMapFactory implements MapFactory {
@@ -51,9 +52,13 @@ public class ExploringMapFactory implements MapFactory {
 
     private LifeZone getLifeZone(int x, int y) {
         float height = (float) SimplexNoiseCalculator.calcNoise(heightNoise, x, y, 1, 0.2, 0.01);
-        if (height <= SEALEVEL) {
-            return temperate.getWaterLifeZone();
+        LifeZone lifeZone = temperate.getWaterLifeZone();
+        if (height > SEALEVEL) {
+            Optional<LifeZone> lifeZoneOptional = temperate.getLifeZoneByHumidity(0.5f);
+            if (lifeZoneOptional.isPresent()) {
+                lifeZone = lifeZoneOptional.get();
+            }
         }
-        return temperate.getLifeZoneByHumidity(height);
+        return lifeZone;
     }
 }

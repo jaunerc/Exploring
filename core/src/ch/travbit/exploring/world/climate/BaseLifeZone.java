@@ -1,7 +1,8 @@
 package ch.travbit.exploring.world.climate;
 
-import ch.travbit.exploring.world.tilemap.tiles.TileFactory;
-
+/**
+ * This class represents a basic life zone.
+ */
 public abstract class BaseLifeZone implements LifeZone {
 
     private float minHumidity, maxHumidity;

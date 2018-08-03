@@ -1,9 +1,8 @@
-package ch.travbit.exploring.world.tilemap.tiles;
+package ch.travbit.exploring.world.climate;
 
 import ch.travbit.exploring.component.PositionComponent;
 import ch.travbit.exploring.component.TileComponent;
 import ch.travbit.exploring.component.VisualComponent;
-import ch.travbit.exploring.util.TileAsset;
 import ch.travbit.exploring.util.rendering.RenderLayer;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
@@ -11,28 +10,31 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class GrassTileFactory implements TileFactory {
+/**
+ * This class represents a basic tile factory.
+ */
+public abstract class BaseTileFactory implements TileFactory {
 
     private Texture texture;
     private Color color;
 
-    public GrassTileFactory(Texture texture) {
+    public BaseTileFactory(Texture texture, Color color) {
         this.texture = texture;
-        color = Color.GREEN;
+        this.color = color;
     }
 
     @Override
     public void addTileToEngine(PooledEngine engine, int tileX, int tileY) {
         PositionComponent pos = engine.createComponent(PositionComponent.class);
+        VisualComponent visual = engine.createComponent(VisualComponent.class);
+        TileComponent tileComponent = engine.createComponent(TileComponent.class);
+        Entity tile = engine.createEntity();
+
         pos.vector.x = tileX;
         pos.vector.y = tileY;
-        VisualComponent visual = engine.createComponent(VisualComponent.class);
         visual.textureRegion = new TextureRegion(texture);
         visual.color = color;
         visual.renderLevel = RenderLayer.TILE.getIndex();
-        TileComponent tileComponent = engine.createComponent(TileComponent.class);
-        tileComponent.tileAsset = TileAsset.TILE_GRASS;
-        Entity tile = engine.createEntity();
         tile.add(pos);
         tile.add(visual);
         tile.add(tileComponent);

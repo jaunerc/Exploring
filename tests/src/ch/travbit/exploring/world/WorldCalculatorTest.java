@@ -1,11 +1,13 @@
 package ch.travbit.exploring.world;
 
+import ch.travbit.exploring.world.util.ChunkPos;
+import ch.travbit.exploring.world.util.WorldCalculator;
 import com.badlogic.gdx.math.Vector2;
 import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Test for {@link ch.travbit.exploring.world.WorldCalculator}
+ * Test for {@link WorldCalculator}
  */
 public class WorldCalculatorTest {
 

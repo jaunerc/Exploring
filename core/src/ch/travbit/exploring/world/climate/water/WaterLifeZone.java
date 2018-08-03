@@ -1,6 +1,6 @@
-package ch.travbit.exploring.world.climate;
+package ch.travbit.exploring.world.climate.water;
 
-import ch.travbit.exploring.world.tilemap.tiles.WaterTileFactory;
+import ch.travbit.exploring.world.climate.BaseLifeZone;
 import com.badlogic.gdx.graphics.Texture;
 
 public class WaterLifeZone extends BaseLifeZone {

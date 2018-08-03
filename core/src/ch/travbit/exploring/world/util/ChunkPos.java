@@ -1,9 +1,10 @@
-package ch.travbit.exploring.world;
-
-import com.badlogic.gdx.math.Vector2;
+package ch.travbit.exploring.world.util;
 
 import java.util.Objects;
 
+/**
+ * This class represents the position of a chunk in the grid.
+ */
 public final class ChunkPos {
 
     private int x;

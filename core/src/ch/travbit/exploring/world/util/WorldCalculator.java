@@ -1,11 +1,11 @@
-package ch.travbit.exploring.world;
+package ch.travbit.exploring.world.util;
 
 import com.badlogic.gdx.math.Vector2;
 
 /**
  * This class represents a calculator for coordinates and chunk positions.
  */
-public class WorldCalculator {
+public final class WorldCalculator {
     private int chunkSize;
     private int pixelsPerMeter;
 

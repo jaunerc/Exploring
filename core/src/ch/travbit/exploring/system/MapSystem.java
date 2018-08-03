@@ -2,9 +2,9 @@ package ch.travbit.exploring.system;
 
 import ch.travbit.exploring.component.PlayerComponent;
 import ch.travbit.exploring.component.PositionComponent;
-import ch.travbit.exploring.world.ChunkPos;
+import ch.travbit.exploring.world.util.ChunkPos;
 import ch.travbit.exploring.world.World;
-import ch.travbit.exploring.world.WorldCalculator;
+import ch.travbit.exploring.world.util.WorldCalculator;
 import com.badlogic.ashley.core.*;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;

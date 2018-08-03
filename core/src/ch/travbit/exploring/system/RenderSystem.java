@@ -45,10 +45,12 @@ public final class RenderSystem extends SortedIteratingSystem {
 
         getEntities()
                 .forEach(entity -> {
-                    PositionComponent position = pm.get(entity);
                     VisualComponent visual = vm.get(entity);
-                    batch.setColor(visual.color);
-                    batch.draw(visual.textureRegion, position.vector.x, position.vector.y);
+                    if (visual.visible) {
+                        PositionComponent position = pm.get(entity);
+                        batch.setColor(visual.color);
+                        batch.draw(visual.textureRegion, position.vector.x, position.vector.y);
+                    }
                 });
 
         batch.end();

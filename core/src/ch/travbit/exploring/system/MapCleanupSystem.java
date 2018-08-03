@@ -14,17 +14,20 @@ public class MapCleanupSystem extends IteratingSystem {
 
     private OrthographicCamera camera;
     private ComponentMapper<PositionComponent> pm;
+    private ComponentMapper<VisualComponent> vm;
 
     public MapCleanupSystem(OrthographicCamera camera) {
-        super(Family.all(TileComponent.class, PositionComponent.class).get());
+        super(Family.all(TileComponent.class, PositionComponent.class, VisualComponent.class).get());
         this.camera = camera;
 
         pm = ComponentMapper.getFor(PositionComponent.class);
+        vm = ComponentMapper.getFor(VisualComponent.class);
     }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         PositionComponent pos = pm.get(entity);
+        VisualComponent visual = vm.get(entity);
         float playerView = 150f;
         float minPosX = camera.position.x - playerView;
         float minPosY = camera.position.y - playerView;
@@ -34,8 +37,11 @@ public class MapCleanupSystem extends IteratingSystem {
         pos.vector.x < minPosX ||
         pos.vector.y > maxPosY ||
         pos.vector.y < minPosY) {
+            visual.visible = false;
             //entity.remove(VisualComponent.class);
             //Gdx.app.debug("removed","entity removed");
+        } else {
+            visual.visible = true;
         }
     }
 }

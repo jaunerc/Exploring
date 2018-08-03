@@ -1,6 +1,5 @@
 package ch.travbit.exploring.world.climate;
 
-import ch.travbit.exploring.world.tilemap.tiles.TileFactory;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

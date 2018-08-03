@@ -1,4 +1,4 @@
-package ch.travbit.exploring.world.tilemap.tiles;
+package ch.travbit.exploring.world.climate;
 
 import com.badlogic.ashley.core.PooledEngine;
 
