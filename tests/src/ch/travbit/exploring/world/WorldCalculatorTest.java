@@ -33,4 +33,12 @@ public class WorldCalculatorTest {
         ChunkPos chunkPos = calculator.calcChunkPosByWorldCoordinate(worldPos);
         Assert.assertEquals(new ChunkPos(1, 0), chunkPos);
     }
+
+    @Test
+    public void testCalcChunkPosByWorldCoordinateNeg() {
+        WorldCalculator calculator = new WorldCalculator(16, 32);
+        Vector2 worldPos = new Vector2(-10, 0);
+        ChunkPos chunkPos = calculator.calcChunkPosByWorldCoordinate(worldPos);
+        Assert.assertEquals(new ChunkPos(-1, 0), chunkPos);
+    }
 }

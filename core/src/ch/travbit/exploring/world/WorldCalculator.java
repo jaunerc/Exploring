@@ -21,8 +21,8 @@ public class WorldCalculator {
     }
 
     public ChunkPos calcChunkPosByWorldCoordinate(Vector2 worldPosition) {
-        int x = (int) (worldPosition.x / chunkSize / pixelsPerMeter);
-        int y = (int) (worldPosition.y / chunkSize / pixelsPerMeter); //TODO fix problem with negative coordinates
+        int x = (int) Math.floor(worldPosition.x / chunkSize / pixelsPerMeter);
+        int y = (int) Math.floor(worldPosition.y / chunkSize / pixelsPerMeter); //TODO fix problem with negative coordinates
         return new ChunkPos(x, y);
     }
 
