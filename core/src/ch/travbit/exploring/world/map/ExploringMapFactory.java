@@ -51,7 +51,7 @@ public class ExploringMapFactory implements MapFactory {
     }
 
     private LifeZone getLifeZone(int x, int y) {
-        float height = (float) SimplexNoiseCalculator.calcNoise(heightNoise, x, y, 3, 0.6, 0.003);
+        float height = (float) SimplexNoiseCalculator.calcNoise(heightNoise, x, y, 4, 0.3, 0.001);
         LifeZone lifeZone = temperate.getWaterLifeZone();
         if (height > SEALEVEL) {
             Optional<LifeZone> lifeZoneOptional = temperate.getLifeZoneByHumidity(0.5f);
