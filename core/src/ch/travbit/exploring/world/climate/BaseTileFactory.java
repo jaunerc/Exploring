@@ -6,7 +6,6 @@ import ch.travbit.exploring.component.VisualComponent;
 import ch.travbit.exploring.util.rendering.RenderLayer;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -16,11 +15,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public abstract class BaseTileFactory implements TileFactory {
 
     private Texture texture;
-    private Color color;
 
-    public BaseTileFactory(Texture texture, Color color) {
+    public BaseTileFactory(Texture texture) {
         this.texture = texture;
-        this.color = color;
     }
 
     @Override
@@ -33,7 +30,6 @@ public abstract class BaseTileFactory implements TileFactory {
         pos.vector.x = tileX;
         pos.vector.y = tileY;
         visual.textureRegion = new TextureRegion(texture);
-        visual.color = color;
         visual.renderLevel = RenderLayer.TILE.getIndex();
         tile.add(pos);
         tile.add(visual);

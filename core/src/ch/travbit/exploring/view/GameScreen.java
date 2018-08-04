@@ -59,7 +59,6 @@ public class GameScreen implements Screen {
         pos.vector.y = startPosition.y;
         VisualComponent visual = engine.createComponent(VisualComponent.class);
         visual.textureRegion = new TextureRegion(exploringGame.getAssetLoader().getPlayer(PlayerAsset.PSEUDO));
-        visual.color = Color.RED;
         visual.renderLevel = RenderLayer.PLAYER.getIndex();
 
         player.add(pos);
