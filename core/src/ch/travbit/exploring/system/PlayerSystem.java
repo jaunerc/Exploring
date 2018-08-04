@@ -11,7 +11,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 
-public class PlayerSystem extends IteratingSystem {
+public final class PlayerSystem extends IteratingSystem {
 
     private ComponentMapper<PositionComponent> pm;
 
@@ -28,7 +28,7 @@ public class PlayerSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         PositionComponent position = pm.get(entity);
         Vector2 nextPos = new Vector2();
-        float translation = deltaTime * 30; //ToDo velocity
+        float translation = deltaTime * 50; //ToDo velocity
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)) {
             nextPos.x += translation;
         }

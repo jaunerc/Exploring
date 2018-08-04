@@ -4,7 +4,7 @@ import ch.travbit.exploring.ExploringGame;
 import ch.travbit.exploring.component.PlayerComponent;
 import ch.travbit.exploring.component.PositionComponent;
 import ch.travbit.exploring.component.VisualComponent;
-import ch.travbit.exploring.system.MapCleanupSystem;
+import ch.travbit.exploring.system.PlayerViewSystem;
 import ch.travbit.exploring.system.MapSystem;
 import ch.travbit.exploring.system.PlayerSystem;
 import ch.travbit.exploring.system.RenderSystem;
@@ -16,7 +16,6 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -50,7 +49,7 @@ public class GameScreen implements Screen {
         engine.addSystem(new RenderSystem(camera, exploringGame.getSpriteBatch()));
         engine.addSystem(new MapSystem(world, playerStartPosition));
         engine.addSystem(new PlayerSystem(camera));
-        engine.addSystem(new MapCleanupSystem(camera));
+        engine.addSystem(new PlayerViewSystem(camera));
     }
     private void createPlayer(Vector2 startPosition) {
         Entity player = engine.createEntity();

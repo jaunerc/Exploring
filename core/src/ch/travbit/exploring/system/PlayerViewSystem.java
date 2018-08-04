@@ -10,13 +10,13 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
-public class MapCleanupSystem extends IteratingSystem {
+public final class PlayerViewSystem extends IteratingSystem {
 
     private OrthographicCamera camera;
     private ComponentMapper<PositionComponent> pm;
     private ComponentMapper<VisualComponent> vm;
 
-    public MapCleanupSystem(OrthographicCamera camera) {
+    public PlayerViewSystem(OrthographicCamera camera) {
         super(Family.all(TileComponent.class, PositionComponent.class, VisualComponent.class).get());
         this.camera = camera;
 
@@ -28,7 +28,7 @@ public class MapCleanupSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         PositionComponent pos = pm.get(entity);
         VisualComponent visual = vm.get(entity);
-        float playerView = 150f;
+        float playerView = 1000f;
         float minPosX = camera.position.x - playerView;
         float minPosY = camera.position.y - playerView;
         float maxPosX = camera.position.x + playerView;
