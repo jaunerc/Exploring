@@ -1,5 +1,6 @@
 package ch.travbit.exploring.util.noise;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -50,7 +51,8 @@ public class SimplexNoise {
     }
 
     public void setSeed(int seed) {
-        p = p_supply.clone();
+        //p = p_supply.clone();
+        p = Arrays.copyOf(p_supply, p.length);
 
         if (seed == RANDOMSEED) {
             Random rand = new Random();
