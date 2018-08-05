@@ -68,7 +68,7 @@ public final class MapSystem extends IteratingSystem {
     private void createChunkIfNotExist(ChunkPos chunkPos) {
         if (! generatedChunks.contains(chunkPos)) {
             Vector2 startCoordinates = worldCalculator.calcWorldCoordinateByChunkCorner(chunkPos.getX(), chunkPos.getY());
-            world.expandWorld(startCoordinates.x, startCoordinates.y);
+            world.expandWorld(startCoordinates.x, startCoordinates.y, chunkPos);
             generatedChunks.add(chunkPos);
         }
     }

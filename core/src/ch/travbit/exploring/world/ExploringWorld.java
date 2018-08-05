@@ -3,6 +3,7 @@ package ch.travbit.exploring.world;
 import ch.travbit.exploring.ExploringGame;
 import ch.travbit.exploring.world.map.MapFactory;
 import ch.travbit.exploring.world.map.TileMapFacade;
+import ch.travbit.exploring.world.util.ChunkPos;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 
@@ -41,8 +42,8 @@ public class ExploringWorld implements World {
     }
 
     @Override
-    public void expandWorld(float startCoordinateX, float startCoordinateY) {
-        mapFactory.createTiles(engine, startCoordinateX, startCoordinateY);
+    public void expandWorld(float startCoordinateX, float startCoordinateY, ChunkPos chunkPos) {
+        mapFactory.createTiles(engine, startCoordinateX, startCoordinateY, chunkPos);
     }
 
     @Override
