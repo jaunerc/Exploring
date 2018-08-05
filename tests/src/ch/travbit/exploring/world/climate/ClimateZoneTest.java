@@ -4,6 +4,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Optional;
+
 /**
  * Test for {@link ch.travbit.exploring.world.climate.ClimateZone}
  */
@@ -34,7 +36,7 @@ public class ClimateZoneTest {
 
     @Test
     public void testFalseLifeZone() {
-        Assert.assertNull(climateZone.getLifeZoneByHumidity(-1f));
+        Assert.assertFalse(climateZone.getLifeZoneByHumidity(-1f).isPresent());
     }
 
     private class ClimateZoneDummy implements ClimateZone {
@@ -59,8 +61,8 @@ public class ClimateZoneTest {
         }
 
         @Override
-        public LifeZone getLifeZoneByHumidity(float humidity) {
-            return lifeZone.humidityIsInsideZone(humidity) ? lifeZone : null;
+        public Optional<LifeZone> getLifeZoneByHumidity(float humidity) {
+            return lifeZone.humidityIsInsideZone(humidity) ? Optional.of(lifeZone) : Optional.empty();
         }
 
         @Override

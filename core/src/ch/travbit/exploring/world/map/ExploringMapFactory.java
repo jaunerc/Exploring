@@ -22,9 +22,9 @@ public class ExploringMapFactory implements MapFactory {
     private int chunkSize;
     private int pixelsPerMeter;
 
-    private SimplexNoise heightNoise;
-    private SimplexNoise temperatureNoise;
-    private SimplexNoise humidityNoise;
+    private SimplexNoiseCalculator heightCalculator;
+    private SimplexNoiseCalculator temperatureCalculator;
+    private SimplexNoiseCalculator humidityCalculator;
 
     private ClimateZone temperate;
     private List<ClimateZone> climateZones;
@@ -42,9 +42,12 @@ public class ExploringMapFactory implements MapFactory {
         climateZones.add(temperate);
 
         Random random = new Random();
-        heightNoise = new SimplexNoise(random.nextInt());
-        temperatureNoise = new SimplexNoise(random.nextInt());
-        humidityNoise = new SimplexNoise(random.nextInt());
+        int octaves = 4;
+        double roughness = 0.3;
+        double scale = 0.001;
+        heightCalculator = new SimplexNoiseCalculator(random.nextInt(), octaves, roughness, scale);
+        temperatureCalculator = new SimplexNoiseCalculator(random.nextInt(), octaves, roughness, scale);
+        humidityCalculator = new SimplexNoiseCalculator(random.nextInt(), octaves, roughness, scale);
     }
 
     @Override
@@ -63,8 +66,8 @@ public class ExploringMapFactory implements MapFactory {
     }
 
     private LifeZone getLifeZone(ClimateZone climateZone, int x, int y) {
-        float height = (float) SimplexNoiseCalculator.calcNoise(heightNoise, x, y, 4, 0.3, 0.001);
-        float humidity = (float) SimplexNoiseCalculator.calcNoise(humidityNoise, x, y, 4, 0.3, 0.001);
+        float height = heightCalculator.calcNoiseForPosition(x, y);
+        float humidity = humidityCalculator.calcNoiseForPosition(x, y);
         LifeZone lifeZone = climateZone.getWaterLifeZone();
         if (height > SEALEVEL) {
             Optional<LifeZone> lifeZoneOptional = climateZone.getLifeZoneByHumidity(humidity);
@@ -77,13 +80,7 @@ public class ExploringMapFactory implements MapFactory {
 
     private ClimateZone getClimateZoneByTemperature(ChunkPos chunkPos) {
         ClimateZone matchedClimateZone = temperate;
-        float temperature = (float) SimplexNoiseCalculator.calcNoise(
-                temperatureNoise,
-                chunkPos.getX(),
-                chunkPos.getY(),
-                4,
-                0.3,
-                0.001);
+        float temperature = temperatureCalculator.calcNoiseForPosition(chunkPos.getX(), chunkPos.getY());
         Optional<ClimateZone> climateZoneOptional = climateZones.stream()
                 .filter(climateZone -> climateZone.temperatureIsInsideZone(temperature)).findFirst();
         if (climateZoneOptional.isPresent()) {

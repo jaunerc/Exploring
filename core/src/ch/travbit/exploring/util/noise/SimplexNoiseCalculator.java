@@ -1,34 +1,35 @@
 package ch.travbit.exploring.util.noise;
 
 /**
- * This class provides a method to calculate simplex noise for a specific 2d position.
+ * This class
  */
-public final class SimplexNoiseCalculator {
+public final class SimplexNoiseCalculator implements NoiseCalculator{
 
-    private SimplexNoiseCalculator() {
+    private SimplexNoise sn;
+    private int seed;
+    private int octaves;
+    private double roughness;
+    private double scale;
+
+    public SimplexNoiseCalculator(int seed, int octaves, double roughness, double scale) {
+        this.seed = seed;
+        this.octaves = octaves;
+        this.roughness = roughness;
+        this.scale = scale;
+        sn = new SimplexNoise(seed);
     }
 
-    /**
-     * Calculates the noise value of the given coordinates.
-     * @param sn SimplexNoise instance.
-     * @param x Coordinate.
-     * @param y Coordinate.
-     * @param octaves The number of iterations.
-     * @param roughness Factor to handle the flatness.
-     * @param scale Factor to decrease the frequency. This value should be small (e.g. 0.01).
-     * @return Noise value.
-     */
-    public static double calcNoise(SimplexNoise sn, int x, int y, int octaves, double roughness, double scale) {
-        double noise = 0.0;
-        double layerFrequency = scale;
-        double layerWeight = 1f;
+    @Override
+    public float calcNoiseForPosition(int x, int y) {
+        return (float) NoiseCalculator.calcNoise(
+                sn,
+                x, y,
+                octaves,
+                roughness,
+                scale);
+    }
 
-        for (int i = 0; i < octaves; i++) {
-            noise += sn.noise(x * layerFrequency, y * layerFrequency) * layerWeight;
-            layerFrequency *= 2;
-            layerWeight *= roughness;
-        }
-
-        return noise;
+    public int getSeed() {
+        return seed;
     }
 }
