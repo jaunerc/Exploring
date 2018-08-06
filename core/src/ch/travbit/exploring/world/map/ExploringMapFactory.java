@@ -6,9 +6,11 @@ import ch.travbit.exploring.util.noise.SimplexNoiseCalculator;
 import ch.travbit.exploring.world.World;
 import ch.travbit.exploring.world.climate.ClimateZone;
 import ch.travbit.exploring.world.climate.LifeZone;
+import ch.travbit.exploring.world.climate.subtropics.SubtropicClimateZone;
 import ch.travbit.exploring.world.climate.temperate.TemperateClimateZone;
 import ch.travbit.exploring.world.util.ChunkPos;
 import com.badlogic.ashley.core.PooledEngine;
+import com.badlogic.gdx.Gdx;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -31,15 +33,16 @@ public class ExploringMapFactory implements MapFactory {
 
     public ExploringMapFactory(AssetLoader assetLoader) {
         temperate = new TemperateClimateZone(assetLoader);
+        ClimateZone subtropics = new SubtropicClimateZone(assetLoader);
         climateZones = new LinkedList<>();
+        climateZones.add(subtropics);
+        climateZones.add(temperate);
     }
 
     @Override
     public void init(World world) {
         chunkSize = world.getChunkSize();
         pixelsPerMeter = world.getPixelsPerMeter();
-
-        climateZones.add(temperate);
 
         Random random = new Random();
         int octaves = 4;
@@ -81,11 +84,15 @@ public class ExploringMapFactory implements MapFactory {
     private ClimateZone getClimateZoneByTemperature(ChunkPos chunkPos) {
         ClimateZone matchedClimateZone = temperate;
         float temperature = temperatureCalculator.calcNoiseForPosition(chunkPos.getX(), chunkPos.getY());
+
         Optional<ClimateZone> climateZoneOptional = climateZones.stream()
                 .filter(climateZone -> climateZone.temperatureIsInsideZone(temperature)).findFirst();
+
         if (climateZoneOptional.isPresent()) {
             matchedClimateZone = climateZoneOptional.get();
         }
+
+        Gdx.app.debug("temperature noise value",""+temperature);
         return  matchedClimateZone;
     }
 }

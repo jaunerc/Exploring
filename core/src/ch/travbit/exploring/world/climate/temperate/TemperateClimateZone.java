@@ -6,10 +6,13 @@ import ch.travbit.exploring.world.climate.BaseClimateZone;
 import ch.travbit.exploring.world.climate.LifeZone;
 import ch.travbit.exploring.world.climate.water.WaterLifeZone;
 
-public class TemperateClimateZone extends BaseClimateZone {
+public final class TemperateClimateZone extends BaseClimateZone {
 
     public TemperateClimateZone(AssetLoader assetLoader) {
         super(new WaterLifeZone(assetLoader.getTile(TileAsset.TILE_WATER)));
+
+        setTemperatureBorders(-1.0f, 0.0f);
+
         LifeZone grass = new GrassLifeZone(assetLoader.getTile(TileAsset.TILE_GRASS));
         LifeZone forest = new ForestLifeZone(assetLoader.getTile(TileAsset.TILE_FOREST));
 

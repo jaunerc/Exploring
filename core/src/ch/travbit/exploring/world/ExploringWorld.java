@@ -10,7 +10,7 @@ import com.badlogic.gdx.Gdx;
 /**
  * This class represents the concrete in game world.
  */
-public class ExploringWorld implements World {
+public final class ExploringWorld implements World {
 
     private ExploringGame game;
     private MapFactory mapFactory;
