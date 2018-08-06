@@ -32,15 +32,16 @@ public class GameScreen implements Screen {
 
     public GameScreen(ExploringGame exploringGame) {
         this.exploringGame = exploringGame;
-        camera = new OrthographicCamera(2000, 2000);
+        camera = new OrthographicCamera(320, 240);
         engine = new PooledEngine();
         init();
     }
 
     private void init() {
-        camera.position.set(320, 240, 0);
-
         Vector2 playerStartPosition = new Vector2(320, 240);
+        Gdx.app.debug("player start position", playerStartPosition.x + ", " + playerStartPosition.y);
+
+        camera.position.set(playerStartPosition.x, playerStartPosition.y, 0);
         createPlayer(playerStartPosition);
 
         World world = WorldFacade.createExploringWorld(exploringGame, engine);
@@ -51,6 +52,7 @@ public class GameScreen implements Screen {
         engine.addSystem(new PlayerSystem(camera));
         engine.addSystem(new PlayerViewSystem(camera));
     }
+
     private void createPlayer(Vector2 startPosition) {
         Entity player = engine.createEntity();
         PositionComponent pos = engine.createComponent(PositionComponent.class);
