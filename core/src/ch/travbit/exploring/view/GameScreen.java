@@ -32,7 +32,7 @@ public class GameScreen implements Screen {
 
     public GameScreen(ExploringGame exploringGame) {
         this.exploringGame = exploringGame;
-        camera = new OrthographicCamera(320, 240);
+        camera = new OrthographicCamera(2000, 2000);
         engine = new PooledEngine();
         init();
     }

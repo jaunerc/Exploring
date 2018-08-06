@@ -11,9 +11,12 @@ public class TemperateClimateZone extends BaseClimateZone {
     public TemperateClimateZone(AssetLoader assetLoader) {
         super(new WaterLifeZone(assetLoader.getTile(TileAsset.TILE_WATER)));
         LifeZone grass = new GrassLifeZone(assetLoader.getTile(TileAsset.TILE_GRASS));
+        LifeZone forest = new ForestLifeZone(assetLoader.getTile(TileAsset.TILE_FOREST));
 
-        grass.setHumidityBorders(-1f, 1f);
+        grass.setHumidityBorders(-1f, 0.4f);
+        forest.setHumidityBorders(0.4f, 1f);
 
         addLifeZone(grass);
+        addLifeZone(forest);
     }
 }
