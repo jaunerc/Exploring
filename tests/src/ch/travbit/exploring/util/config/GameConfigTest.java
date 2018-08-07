@@ -5,22 +5,22 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Tests for {@link ch.travbit.exploring.util.config.ExploringGameConfig}
+ * Tests for {@link GameConfig}
  */
-public class ExploringGameConfigTest {
+public class GameConfigTest {
 
-    private ExploringGameConfig config;
+    private GameConfig config;
 
     @Before
     public void before() {
-        config = new ExploringGameConfig();
+        config = new GameConfig();
     }
 
     @Test
     public void testAddNewIntValue() {
-        config.setIntValue(ConfigKey.CHUNKSIZE, 42);
+        config.setIntValue(ConfigKey.CHUNK_SIZE, 42);
         try {
-            Assert.assertEquals(42, config.getIntValue(ConfigKey.CHUNKSIZE));
+            Assert.assertEquals(42, config.getIntValue(ConfigKey.CHUNK_SIZE));
         } catch (IllegalArgumentException e) {
             Assert.fail();
         }
@@ -38,6 +38,6 @@ public class ExploringGameConfigTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testNonExistingIntValue() {
-        config.getIntValue(ConfigKey.CHUNKSIZE);
+        config.getIntValue(ConfigKey.CHUNK_SIZE);
     }
 }

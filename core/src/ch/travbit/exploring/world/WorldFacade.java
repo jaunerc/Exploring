@@ -1,8 +1,8 @@
 package ch.travbit.exploring.world;
 
 import ch.travbit.exploring.ExploringGame;
+import ch.travbit.exploring.util.config.ConfigKey;
 import com.badlogic.ashley.core.PooledEngine;
-import com.badlogic.gdx.Gdx;
 
 /**
  * This class is a facade to create worlds.
@@ -13,9 +13,8 @@ public final class WorldFacade {
     }
 
     public static World createExploringWorld(ExploringGame game, PooledEngine engine) {
-        int chunkSize = 8;
-        int pixelsPerMeter = 32; //todo params declaring outside of this class
-        Gdx.app.debug("new world created with a chunksize of",""+chunkSize);
+        int chunkSize = game.getGameConfig().getIntValue(ConfigKey.CHUNK_SIZE);
+        int pixelsPerMeter = game.getGameConfig().getIntValue(ConfigKey.PIXELS_PER_METER);
         return new ExploringWorld(game, engine, chunkSize, pixelsPerMeter);
     }
 }

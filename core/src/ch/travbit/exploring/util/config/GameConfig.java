@@ -5,12 +5,12 @@ import java.util.Optional;
 /**
  * This class represents the game config.
  */
-public class ExploringGameConfig {
+public class GameConfig {
 
     private ConfigStore<Integer> integers;
     private ConfigStore<Float> floats;
 
-    public ExploringGameConfig() {
+    public GameConfig() {
         integers = new BasicConfigStore<>();
         floats = new BasicConfigStore<>();
     }

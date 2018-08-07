@@ -9,6 +9,7 @@ import ch.travbit.exploring.system.MapSystem;
 import ch.travbit.exploring.system.PlayerSystem;
 import ch.travbit.exploring.system.RenderSystem;
 import ch.travbit.exploring.util.PlayerAsset;
+import ch.travbit.exploring.util.config.ConfigKey;
 import ch.travbit.exploring.util.rendering.RenderLayer;
 import ch.travbit.exploring.world.World;
 import ch.travbit.exploring.world.WorldFacade;
@@ -32,17 +33,18 @@ public class GameScreen implements Screen {
 
     public GameScreen(ExploringGame exploringGame) {
         this.exploringGame = exploringGame;
-        camera = new OrthographicCamera(2000, 2000);
+        camera = new OrthographicCamera();
         engine = new PooledEngine();
         init();
     }
 
     private void init() {
-        Vector2 playerStartPosition = new Vector2(320, 240);
-        Gdx.app.debug("player start position", playerStartPosition.x + ", " + playerStartPosition.y);
+        float x = exploringGame.getGameConfig().getFloatValue(ConfigKey.START_POS_X);
+        float y = exploringGame.getGameConfig().getFloatValue(ConfigKey.START_POS_Y);
+        Vector2 playerStartPosition = new Vector2(x, y);
 
-        camera.position.set(playerStartPosition.x, playerStartPosition.y, 0);
-        createPlayer(playerStartPosition);
+        createPlayer(playerStartPosition.x, playerStartPosition.y);
+        initCamera(playerStartPosition.x, playerStartPosition.y);
 
         World world = WorldFacade.createExploringWorld(exploringGame, engine);
         world.init();
@@ -53,11 +55,19 @@ public class GameScreen implements Screen {
         engine.addSystem(new PlayerViewSystem(camera));
     }
 
-    private void createPlayer(Vector2 startPosition) {
+    private void initCamera(float x, float y) {
+        float viewportWidth = exploringGame.getGameConfig().getFloatValue(ConfigKey.CAMERA_VIEWPORT_WIDTH);
+        float viewportHeight = exploringGame.getGameConfig().getFloatValue(ConfigKey.CAMERA_VIEWPORT_HEIGHT);
+        camera.viewportWidth = viewportWidth;
+        camera.viewportHeight = viewportHeight;
+        camera.position.set(x, y, 0);
+    }
+
+    private void createPlayer(float x, float y) {
         Entity player = engine.createEntity();
         PositionComponent pos = engine.createComponent(PositionComponent.class);
-        pos.vector.x = startPosition.x;
-        pos.vector.y = startPosition.y;
+        pos.vector.x = x;
+        pos.vector.y = y;
         VisualComponent visual = engine.createComponent(VisualComponent.class);
         visual.textureRegion = new TextureRegion(exploringGame.getAssetLoader().getPlayer(PlayerAsset.PSEUDO));
         visual.renderLevel = RenderLayer.PLAYER.getIndex();
