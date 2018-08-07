@@ -41,6 +41,7 @@ public class GameScreen implements Screen {
     private void init() {
         float x = exploringGame.getGameConfig().getFloatValue(ConfigKey.START_POS_X);
         float y = exploringGame.getGameConfig().getFloatValue(ConfigKey.START_POS_Y);
+        float viewDistance = exploringGame.getGameConfig().getFloatValue(ConfigKey.PLAYER_VIEW_DISTANCE);
         Vector2 playerStartPosition = new Vector2(x, y);
 
         createPlayer(playerStartPosition.x, playerStartPosition.y);
@@ -52,7 +53,7 @@ public class GameScreen implements Screen {
         engine.addSystem(new RenderSystem(camera, exploringGame.getSpriteBatch()));
         engine.addSystem(new MapSystem(world, playerStartPosition));
         engine.addSystem(new PlayerSystem(camera));
-        engine.addSystem(new PlayerViewSystem(camera));
+        engine.addSystem(new PlayerViewSystem(camera, viewDistance));
     }
 
     private void initCamera(float x, float y) {

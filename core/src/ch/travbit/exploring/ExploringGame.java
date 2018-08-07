@@ -36,12 +36,13 @@ public class ExploringGame extends Game {
     }
 
     private void initGameConfig() {
-        gameConfig.setIntValue(ConfigKey.CHUNK_SIZE, 8);
+        gameConfig.setIntValue(ConfigKey.CHUNK_SIZE, 16);
         gameConfig.setIntValue(ConfigKey.PIXELS_PER_METER, 32);
-        gameConfig.setFloatValue(ConfigKey.START_POS_X, 0);
-        gameConfig.setFloatValue(ConfigKey.START_POS_Y, 0);
-        gameConfig.setFloatValue(ConfigKey.CAMERA_VIEWPORT_WIDTH, 320);
-        gameConfig.setFloatValue(ConfigKey.CAMERA_VIEWPORT_HEIGHT, 240);
+        gameConfig.setFloatValue(ConfigKey.START_POS_X, 0.0f);
+        gameConfig.setFloatValue(ConfigKey.START_POS_Y, 0.0f);
+        gameConfig.setFloatValue(ConfigKey.CAMERA_VIEWPORT_WIDTH, 320.0f);
+        gameConfig.setFloatValue(ConfigKey.CAMERA_VIEWPORT_HEIGHT, 240.0f);
+        gameConfig.setFloatValue(ConfigKey.PLAYER_VIEW_DISTANCE, 1000f);
     }
 
     public SpriteBatch getSpriteBatch() {

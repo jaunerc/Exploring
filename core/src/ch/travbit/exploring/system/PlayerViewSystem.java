@@ -15,10 +15,12 @@ public final class PlayerViewSystem extends IteratingSystem {
     private OrthographicCamera camera;
     private ComponentMapper<PositionComponent> pm;
     private ComponentMapper<VisualComponent> vm;
+    private float viewDistance;
 
-    public PlayerViewSystem(OrthographicCamera camera) {
+    public PlayerViewSystem(OrthographicCamera camera, float viewDistance) {
         super(Family.all(TileComponent.class, PositionComponent.class, VisualComponent.class).get());
         this.camera = camera;
+        this.viewDistance = viewDistance;
 
         pm = ComponentMapper.getFor(PositionComponent.class);
         vm = ComponentMapper.getFor(VisualComponent.class);
@@ -28,11 +30,10 @@ public final class PlayerViewSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         PositionComponent pos = pm.get(entity);
         VisualComponent visual = vm.get(entity);
-        float playerView = 1000f;
-        float minPosX = camera.position.x - playerView;
-        float minPosY = camera.position.y - playerView;
-        float maxPosX = camera.position.x + playerView;
-        float maxPosY = camera.position.y + playerView;
+        float minPosX = camera.position.x - viewDistance;
+        float minPosY = camera.position.y - viewDistance;
+        float maxPosX = camera.position.x + viewDistance;
+        float maxPosY = camera.position.y + viewDistance;
         if (pos.vector.x > maxPosX ||
         pos.vector.x < minPosX ||
         pos.vector.y > maxPosY ||
